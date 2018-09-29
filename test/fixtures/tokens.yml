@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  token: MyString
+  start_at: 2016-02-15 11:00:38
+  end_at: 2016-02-15 11:00:38
+
+two:
+  user_id: 
+  token: MyString
+  start_at: 2016-02-15 11:00:38
+  end_at: 2016-02-15 11:00:38

@@ -1,0 +1,30 @@
+- if !current_user 
+  %html
+    %head
+      %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+      %title Elmhurst
+      %link{:charset => "utf-8", :href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css", :media => "screen", :rel => "stylesheet"}/
+      %link{:charset => "utf-8", :href => "assets/style_index.css", :media => "screen", :rel => "stylesheet"}/
+    %body.image_bg
+      .preload-bg
+        .wrapp
+          %div
+        .container.colaborate
+          .row
+            .col-md-6.top-50.bottom-10
+              .logo.bottom-30
+          .row.txt-white
+            .col-md-6.col-md-push-3
+              %h1.bottom-30 Welcome, happy you made it.
+              %p.bottom-30
+                The Elmhurst Project is a philanthropic brokerage designed to give academic researchers
+                access to the funding required for studies. In a world of bureaucratic loopholes,
+                unreliable sources of financing, and unclear private accountability,
+                The Elmhurst Project is transparent, reliable, and seamless.
+          .row
+            .col-md-12.bottom-10
+              %a.button.pushed.btn-primary.expand{:href => "/users/sign_in", :name => "button"} Nonprofits
+              %a.button.pushed.btn-primary.expand{:href => "/users/sign_in", :name => "button"} Investors
+          .row
+            .col-md-12.bottom-10
+              %a.button.pushed.expand{:href => "/users/sign_up", :name => "button"} SignUp

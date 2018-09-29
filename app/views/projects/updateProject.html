@@ -1,0 +1,65 @@
+<section id="main-content">
+    <section class="wrapper">
+        <div class="row" id="projectViewModel" >
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Add/Edit Project
+                    </header>
+                    <div class="panel-body">
+                        <form role="form" class="cmxform tasi-form" id="projectForm">
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group prepend-icon">
+                                        <label for="Project_Name">Project Name</label>
+                                        <input data-bind='value: title' type="text" class="form-control" id="Project_Name" placeholder="Project Title" name="Project_Name" >
+                                        <span class="field-icon"><i class="icon-file"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <div class="form-group prepend-icon">
+                                        <label for="Project_Description" >Project Description</label>
+                                        <textarea data-bind='value: description' name="Project_Description" id="Project_Description" class="form-control " placeholder="Project Description"  ></textarea>
+                                        <span class="field-icon"><i class="icon-file-text-alt"></i></span>
+                                    </div>
+                                    <div >
+                                        <button  type="submit" data-bind="click: updateProject" class="btn btn-shadow btn-primary" href="#saveConfirm" data-toggle="modal"> update </button>
+                                        <a id="cancel" class="btn btn-shadow btn-default" href="#cancelConfirm" data-toggle="modal"> Cancel </a>
+                                    </div>
+                                    </form>
+
+                                    <div role="dialog" tabindex="-1" id="cancelConfirm" class="modal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <p> Are you sure cancel save current project, and go back to view table? </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a class="btn btn-danger btn-shadow" href="/researcher-project" > Ok </a>
+                                                    <a class="btn btn-default btn-shadow" data-dismiss="modal" > Cancel </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </form>
+
+                                </div>
+                            </div>
+
+                            <script src="/assets/researcher/updateProject.js"  type="text/javascript" />
+
+                            <script type="text/javascript">
+
+
+                            </script>
+
+                    </div>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>
+

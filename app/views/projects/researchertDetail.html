@@ -1,0 +1,198 @@
+<section id="main-content">
+               <section class="wrapper">
+                    <div id="projectDetailsViewModel">
+                        <div class="row state-overview">
+                            <div class="col-md-6 ">
+                                <section class="panel">
+                                    <div class="symbol terques small-symbol">
+                                        <i class="icon-file"></i>
+                                    </div>
+                                    <div  data-bind="foreach: projects" class="value small-value">
+                                        <h1 class="count" data-bind="text:project.title"></h1>
+                                                 <div class="row ">
+                               
+                                           <p data-bind="foreach: project.authors" >Created by 
+                                          
+                                           <a  data-bind="text: first_name + last_name"></a></p> 
+
+                                            <span data-bind="text: project.created_at"></span>
+                                        </div>
+                                     
+                                        
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="col-md-3 ammount">
+                                <section class="panel">
+                                    <div class="ammount-head">
+                                        <h5>Request amount</h5>
+                                    </div>
+                                    <footer class="ammount-footer">
+                                        <h4 data-bind="text: requestLength"></h4>
+                                    </footer>
+                                </section>
+                            </div>
+                            <div class="col-md-3 ammount">
+                                <section class="panel">
+                                    <div class="ammount-head">
+                                        <h5>Fund amount</h5>
+                                    </div>
+                                    <footer class="ammount-footer">
+                                        <h4 data-bind="text: FundLength"></h4>
+                                    </footer>
+                                </section>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <section class="panel">
+                                    <div class="panel-body">
+                                        <div class="row">
+                                            <div data-bind="foreach: projects" class="col-md-8">
+                                                <h4>Project Description</h4>
+                                                <p data-bind="text: project.description"></p>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <h4>Project Members</h4>
+
+                                                <ul class="list-group">
+                                                    <div  data-bind="foreach: projects">
+                                                        <table class="list-group-item" data-bind="foreach: project.members" >
+                                                            <tr>
+                                                            <td data-bind="text: first_name + last_name"></td></tr>
+                                                        </table>
+                                                    </div>
+                                                                                     
+                                                    <li class="list-group-item" style="margin-top: -2px;">
+                                                        <div class="row">
+                                                            <div class="col-xs-12">
+                                                                <button class="btn btn-white btn-block" onclick=" postMember()"><i class="icon-plus"></i> Add a Member </button>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                        <div>
+ 
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <section class="panel">
+
+                                    <header class="panel-heading">
+                                        Project Requests
+                                        <button style="margin-left: 790px;width: 100px;" class="btn btn-white request">
+                                  <i class="icon-plus-sign"></i>
+                                   Request
+                              </button>
+                                    </header>
+                                    <div class="panel-body">
+                                        <div class="adv-table">
+                                                          <table cellpadding="0" cellspacing="0" border="0" class="display table" style="width: 100%;">
+                                    <thead>
+                                        <tr>
+                                            <th  style="width: 15%; text-align: center;"> </th>
+                                            <th  style="width: 20%;  text-align: center;">Item</th>
+                                            <th  style="width: 15%;  text-align: center;">Amount</th>
+                                            <th  style="width: 11%;  text-align: center;">Full Fill</th>
+                                            <th  style="width: 22%;  text-align: center;">Date</th>
+                                        </tr>
+                                    </thead>  
+                                </table>
+
+                                <div class="accordion" id="accordion2" data-bind="foreach: {data: request_Items.pageItems, as: 'items'}">
+                                    <!-- ko template: 'accordionTmpl' --><!-- /ko -->
+                                </div>
+
+                                <script type="text/html" id="accordionTmpl">
+                                    <div class="accordion-group">
+                                        <div class="accordion-heading" style="
+                                             border-top: 1px solid #ddd;
+                                             ">
+                                            <table  >
+                                                <tbody >
+                                                    <tr>
+                                                        <td style="width: 22%; text-align: center;"><img  class="plus" data-toggle="collapse" data-parent="#accordion2"  data-bind="text: items.requestDate, attr: { href: '#' + items.requestID}"></td>
+
+                                                        <td  style="width: 25%; text-align: center;" data-bind="text: items.itemName"></td>
+                                                        <td  style="width: 20%; text-align: center;" data-bind="text: items.filledAmountUSD"></td>
+                                                        <td  style="width: 15%; text-align: center;" text-align: center; data-bind="text: items.priceUSD"></td>
+                                                        <td  style="width: 25%; text-align: center;" data-bind="text: items.requestDate"></td>
+                                                        
+                                                    </tr>
+
+                                                </tbody>
+
+                                            </table>
+
+
+                                        </div>
+                                        <div class="accordion-body collapse" data-bind="attr: { id: items.requestID}">
+                                            <div class="accordion-inner">
+                                                <table cellpadding="0" cellspacing="0" border="0" class="display table"  style="width: 100%;">
+                                                    <thead>
+                                                        <tr  style=" text-align: center;">
+                                                            <th  style="width: 15%; text-align: center;" >transaction</th>
+                                                            <th  style="width: 15%; text-align: center;">type</th>
+                                                            <th  style="width: 20%;text-align: center; ">amount in BTC</th>
+                                                            <th  style="width: 20%; text-align: center;">amount in $</th>
+                                                            <th  style="width: 15%; text-align: center;">date</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody class="transaction" data-bind="foreach: {data: items.fullFills, as: 'subitems'}" >
+                                                        <tr  style=" text-align: center;">
+                                                            <td style="width: 15%; "data-bind="text: fillID"></td>
+                                                            <td style="width: 15%; " data-bind="text: fullFillType"></td>
+                                                            <td style="width: 15%; "data-bind="text: fillAmount"></td>
+                                                            <td style="width: 15%; "data-bind="text: fillAmount"></td>
+                                                            <td style="width: 15%; "data-bind="text: fillDate"></td>
+                                                        </tr>
+                                                    </tbody></tbody>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </script>
+                                    <ul class="pagination pagination-gap" style="display: inline-block; overflow: hidden; text-align: center; margin-bottom: 20px;">
+
+                                        <li style="float: left;" data-bind="css: { disabled: request_Items.isFirstPage() }" class="previous disabled">
+                                            <a href="#" aria-label="First" data-bind="click: request_Items.toFirstPage">
+                                                First
+                                            </a>
+                                        </li>
+                                        <li style="float: left;" data-bind="css: { disabled: !request_Items.hasPreviousPage() }" class="previous disabled">
+                                            <a href="#" aria-label="Previous" data-bind="click: request_Items.toPreviousPage">
+                                                Previous
+                                            </a>
+                                        </li>
+                                        <!-- ko foreach: request_Items.pages -->
+                                        <li style="float: left;" data-bind="css: { active: $data == $parent.request_Items.pageNumber() }">
+                                            <a href="#" data-bind="text: $data, click:  $parent.request_Items.pageNumber.bind($data)"></a>
+                                        </li>
+                                        <!-- /ko -->
+                                        <li style="float: left;" data-bind="css: { disabled: !request_Items.hasNextPage() }" class="next disabled">
+                                            <a href="#" aria-label="Next" data-bind="click: request_Items.toNextPage">
+                                                Next
+                                            </a>
+                                        </li>
+                                        <li style="float: left;" data-bind="css: { disabled: request_Items.isLastPage() }" class="next disabled">
+                                            <a href="#" aria-label="Last" data-bind="click: request_Items.toLastPage">
+                                                Last
+                                            </a>
+                                        </li>
+                                    </ul>
+                                                                             </div>
+                                                <script src="/assets/addMember.js"  type="text/javascript" /></script>
+
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </section>
+         

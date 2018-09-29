@@ -1,0 +1,37 @@
+= bootstrap_devise_error_messages!
+%body.login-body
+  .container
+    %div.form-signin.cmxform.tasi-form
+      %h2.form-signin-heading registration now
+      %div.login-wrap
+      %p Enter your personal details below
+
+      = form_for(resource, :as => resource_name, :url => registration_path(resource_name), html: { role: "form" , :validate => true }) do |f|
+
+        .form-group
+          = f.text_field :email, autofocus: true, class: "form-control" , placeholder: "Email"  
+        .row
+          .col-sm-5
+            .form-group
+              = f.text_field :first_name, autofocus: true, class: "form-control2" , placeholder: "First Name" , :hint => 'No special characters.'
+          .col-sm-5
+            .form-group
+              = f.text_field :last_name, autofocus: true, class: "form-control2"  , placeholder: "Last Name"
+        %label.role Choose your role:
+        .row
+          .col-sm-6
+            = f.check_box  :researcher, autofocus: true  , class: "label_radio col-lg-6 col-sm-6"
+            = f.label :researcher
+            
+          .col-sm-6
+            
+            = f.check_box  :investor, autofocus: true , class: "label_radio col-lg-6 col-sm-6"
+            = f.label :investor
+
+        .form-group
+         
+          = f.password_field :password, class: "form-control" , placeholder: "Password "
+        .form-group
+          = f.password_field :password_confirmation, class: "form-control", placeholder: "Re-type Password "
+        = f.submit t('.sign_up', :default => "Sign up"), class: "btn btn-lg btn-login btn-block"
+//user.company.errors.full_messages

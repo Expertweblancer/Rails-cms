@@ -1,0 +1,60 @@
+[
+
+{
+  "investor_id": 1,
+  "project_id": 8,
+
+  "date": "1/1/2016",
+
+   
+   "member_1" : "member 1",
+   "member_2" : "member 2",
+   
+   
+   "item_1" : "phone",
+   "item_2" : "lap", 
+
+
+   "Amount_1" : "100 $",
+   "Amount_2" : "200 $" ,  
+
+   "investor": "user 1 " , 
+
+   
+   "amount_1" : "30 $",
+   "amount_2" : "150 $",
+  
+   "investor_date": "4/4/2016" 
+},
+
+{
+  "investor_id": 2,
+  "project_id": 10,
+  
+  "date": "4/1/2016",
+
+   "Submitted_by": {
+      "member_1" : "member 1",
+      "member_2" : "member 3"
+   },
+
+   "Item":{
+      "item_1" : "mobile",
+      "item_2" : "ipad"
+   },
+
+   "Amount": {
+      "Amount_1" : "300 $",
+      "Amount_2" : "400 $"
+   },
+
+   "investor": "user 2" , 
+
+   "amount": {
+      "amount_1" : "200 $",
+      "amount_2" : "150 $"
+   },
+
+   "investor_date": "9/3/2016" 
+}
+]

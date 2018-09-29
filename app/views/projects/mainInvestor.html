@@ -1,0 +1,983 @@
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"/>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"/>
+        <script src="https://code.highcharts.com/stock/highstock.js"></script>
+        <script src="https://code.highcharts.com/stock/modules/exporting.js"></script>
+<section id="main-content">
+    <section id="userViewModel" class="wrapper">
+        <div style="display: none;" id="c_username" ><%= current_user.first_name %> <%= current_user.last_name %></div>
+        <div class="row">
+            <div class="col-lg-4">
+                <!--user info table start-->
+                <section class="panel">
+                    <div class="panel-body">
+                        <a class="task-thumb" href="#">
+                            <img class="dash_pic"/>
+                        </a>
+                        <div  data-bind="foreach: getUser" class="task-thumb-details">
+                            <h1><a href="#" data-bind="text: first_name + last_name"></a></h1>
+                            <p>Investor</p>
+                        </div>
+                    </div>
+                    <table class="table table-hover personal-task">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <i class=" icon-file"></i>
+                                </td>
+                                <td>New Trades</td>
+                                <td data-bind="text: leng"> </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="icon-btc"></i>
+                                </td>
+                                <td>Open Trades</td>
+                                <td> 14</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <i class="icon-file"></i>
+                                </td>
+                                <td>Total Trades</td>
+                                <td data-bind="text: lenght"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+                <!--user info table end-->
+                <div class="state-overview">
+                    <section class="panel">
+                        <div class="symbol blue">
+                            <i class="icon-bar-chart"></i>
+                        </div>
+                        <div class="value">
+                            <h1 class=" count4">10328</h1>
+                            <p>Total Profit</p>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Lastest Trades
+                    </header>
+                    <div class="panel-body">
+                        <div class="adv-table">
+                            <table  cellpadding="0" cellspacing="0" border="0" 
+                                    class="table table-striped table-condensed">
+                                <thead>
+                                    <tr><!--display:none;-->
+                                        <th style="width: 0%; display:none; ">Trade</th>
+                                        <th style="width: 35%">Shares</th>
+                                        <th style="width: 20%">Principal</th>
+                                        <th style="width: 25%">P/L</th>
+                                        <th style="width: 10%; text-align: center;">Order</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach: info">
+                                    <tr ><!--style="display:none;"-->
+                                        <td style="display:none;" data-bind="text: info.id" ></td>
+                                        <td data-bind="text: title "></td>
+                                        <td data-bind="foreach: investors" ><p data-bind="text: first_name + last_name "></p></td>
+                                        <td data-bind="text: created_at"></td>
+                                        <td  style="text-align: center;"><a data-bind="attr:{href: 'investor_detail/id*' + id}" class="btn btn-info btn-xs">&puncsp;<i class="icon-info"></i>&puncsp;</a></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+                <section class="panel woodbg">
+                    <div class="smart-wrap">
+                        <div class="smart-forms smart-container wrap-1">
+                            <div class="form-header header-primary">
+                                <h4>
+                                    <i class="fa fa-bar-chart"></i>
+                                    Charts
+                                </h4>
+                            </div>
+                            <form id="form-ui" action="" method="post">
+                            <!-- <div class="form-body">
+                                    <div class="frm-row">
+                                        <div class="section colm colm12">
+                                            <div class="spacer-b30 spacer-t30">
+                                                <div class="tagline">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                            <div id="buyContainer" style="height: 400px; min-width: 310px"></div>
+                                        </div>
+                                    </div>
+
+                                </div>-->
+                                <div class="form-body">
+                                    <div class="frm-row">
+                                        <div class="section colm colm8">
+                                            <div class="spacer-b30 spacer-t30">
+                                                <div class="tagline">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                            <div id="chart" style="height: 400px; min-width: 310px"></div>
+                                        </div>
+                                        <div class="section colm colm4">
+                                            <div class="spacer-b30 spacer-t30">
+                                                <div class="tagline">
+                                                    <span></span>
+                                                </div>
+                                            </div>
+                                            <div style="height: 400px; ">
+                                                <div>Item Price: <span id="item_price">461</span>$</div>
+                                                <div>Current BTC/USD Rate: <span id="btc_usd">$5,631USD</span></div>
+                                                <br>
+                                                <div>
+                                                <!--
+                                                    <button data-bind="" class="button btn-primary pushed button-left smartforms-modal-trigger" data-smart-modal="#smart-modal-buy"><i class="fa fa-chevron-circle-up"></i>  Buy </button> 
+                                                    <button data-bind="" class="button btn-primary pushed button-right smartforms-modal-trigger" data-smart-modal="#smart-modal-sell"><i class="fa fa-chevron-circle-down"></i>  Sell </button>
+                                                -->
+                                                    <a data-bind="click: $parent.openBuyModal" class='button btn-primary pushed button-left smartforms-modal-trigger'  href="#smart-modal-buy" data-toggle="modal"><i class='icon-chevron-sign-up'></i>  Buy </a> 
+                                                    <a data-bind="click: $parent.openSellModal" class='button btn-primary pushed button-right smartforms-modal-trigger'  href="#smart-modal-sell" data-toggle="modal"><i class='icon-chevron-sign-down'></i>  Sell </a>
+                                                </div> 
+
+                                            </div>
+                                        </div>                            
+                                    </div>
+
+                                </div>                    
+                            </form>
+                        </div>
+                    </div>
+                    <script>
+                        var unfulfilled_requests=[];
+                        $(function () {
+                            //$.getJSON('/rest/fullFillRequest/', function (data) {
+                              /*  data = [
+                {
+                    "date": "12/30/2011",
+                    "close": 405,
+                    "volume": 6414369,
+                    "open": 403.51,
+                    "high": 406.28,
+                    "low": 403.49,
+                    "symbol": "2. AAPL"
+                },
+                {
+                    "date": "11/30/2011",
+                    "close": 382.2,
+                    "volume": 14464710,
+                    "open": 381.29,
+                    "high": 382.276,
+                    "low": 378.3,
+                    "symbol": "2. AAPL"
+                },
+                {
+                    "date": "10/31/2011",
+                    "close": 404.78,
+                    "volume": 13762250,
+                    "open": 402.42,
+                    "high": 409.33,
+                    "low": 401.05,
+                    "symbol": "2. AAPL"
+                },
+                {
+                    "date": "9/30/2011",
+                    "close": 381.32,
+                    "volume": 19553550,
+                    "open": 387.12,
+                    "high": 388.89,
+                    "low": 381.18,
+                    "symbol": "2. AAPL"
+                },
+                {
+                    "date": "8/31/2011",
+                    "close": 384.83,
+                    "volume": 18643770,
+                    "open": 390.57,
+                    "high": 392.08,
+                    "low": 381.86,
+                    "symbol": "2. AAPL"
+                },
+                {
+                    "date": "7/29/2011",
+                    "close": 390.48,
+                    "volume": 22550900,
+                    "open": 387.64,
+                    "high": 395.15,
+                    "low": 384,
+                    "symbol": "2. AAPL"
+                },
+                {
+                    "date": "6/30/2011",
+                    "close": 335.67,
+                    "volume": 11526680,
+                    "open": 334.7,
+                    "high": 336.13,
+                    "low": 332.84,
+                    "symbol": "2. AAPL"
+                },
+                {
+                    "date": "5/31/2011",
+                    "close": 347.83,
+                    "volume": 14869200,
+                    "open": 341.1,
+                    "high": 347.83,
+                    "low": 341,
+                    "symbol": "2. AAPL"
+                },
+                {
+                    "date": "4/29/2011",
+                    "close": 350.13,
+                    "volume": 29776300,
+                    "open": 346.78,
+                    "high": 353.95,
+                    "low": 346.666,
+                    "symbol": "2. AAPL"
+                },
+                {
+                    "date": "3/31/2011",
+                    "close": 348.5075,
+                    "volume": 9779020,
+                    "open": 346.36,
+                    "high": 349.8,
+                    "low": 346.06,
+                    "symbol": "2. AAPL"
+                },
+                {
+                    "date": "2/28/2011",
+                    "close": 353.21,
+                    "volume": 14356740,
+                    "open": 351.24,
+                    "high": 355.05,
+                    "low": 351.12,
+                    "symbol": "2. AAPL"
+                },
+                {
+                    "date": "1/31/2011",
+                    "close": 339.32,
+                    "volume": 13457510,
+                    "open": 335.8,
+                    "high": 340.04,
+                    "low": 334.3,
+                    "symbol": "2. AAPL"
+                },
+                {
+                    "date": "12/30/2011",
+                    "close": 173.1,
+                    "volume": 4279069,
+                    "open": 173.36,
+                    "high": 175.17,
+                    "low": 172.49,
+                    "symbol": "3. AMZN"
+                },
+                {
+                    "date": "11/30/2011",
+                    "close": 192.29,
+                    "volume": 7700490,
+                    "open": 194.76,
+                    "high": 195.3,
+                    "low": 188.75,
+                    "symbol": "3. AMZN"
+                },
+                {
+                    "date": "10/31/2011",
+                    "close": 213.51,
+                    "volume": 7336799,
+                    "open": 215.79,
+                    "high": 218.89,
+                    "low": 213.04,
+                    "symbol": "3. AMZN"
+                },
+                {
+                    "date": "9/30/2011",
+                    "close": 216.23,
+                    "volume": 6549641,
+                    "open": 218.19,
+                    "high": 223,
+                    "low": 215.21,
+                    "symbol": "3. AMZN"
+                },
+                {
+                    "date": "8/31/2011",
+                    "close": 215.23,
+                    "volume": 7397287,
+                    "open": 212.27,
+                    "high": 216.17,
+                    "low": 211.35,
+                    "symbol": "3. AMZN"
+                },
+                {
+                    "date": "7/29/2011",
+                    "close": 222.52,
+                    "volume": 5166268,
+                    "open": 221.29,
+                    "high": 225.75,
+                    "low": 219.51,
+                    "symbol": "3. AMZN"
+                },
+                {
+                    "date": "6/30/2011",
+                    "close": 204.49,
+                    "volume": 4446007,
+                    "open": 200.78,
+                    "high": 205.2,
+                    "low": 200.5,
+                    "symbol": "3. AMZN"
+                },
+                {
+                    "date": "5/31/2011",
+                    "close": 196.69,
+                    "volume": 3405698,
+                    "open": 195.94,
+                    "high": 198.44,
+                    "low": 195.03,
+                    "symbol": "3. AMZN"
+                },
+                {
+                    "date": "4/29/2011",
+                    "close": 195.81,
+                    "volume": 5697726,
+                    "open": 194.38,
+                    "high": 196.59,
+                    "low": 193.78,
+                    "symbol": "3. AMZN"
+                },
+                {
+                    "date": "3/31/2011",
+                    "close": 180.13,
+                    "volume": 4824628,
+                    "open": 179.31,
+                    "high": 181.57,
+                    "low": 178.5,
+                    "symbol": "3. AMZN"
+                },
+                {
+                    "date": "2/28/2011",
+                    "close": 173.29,
+                    "volume": 6781774,
+                    "open": 173.91,
+                    "high": 175.89,
+                    "low": 172.15,
+                    "symbol": "3. AMZN"
+                },
+                {
+                    "date": "1/31/2011",
+                    "close": 169.64,
+                    "volume": 6716002,
+                    "open": 170.16,
+                    "high": 171.44,
+                    "low": 167.41,
+                    "symbol": "3. AMZN"
+                },
+                {
+                    "date": "12/30/2011",
+                    "close": 645.9,
+                    "volume": 1780941,
+                    "open": 642.02,
+                    "high": 646.76,
+                    "low": 642.02,
+                    "symbol": "1. GOOG"
+                },
+                {
+                    "date": "11/30/2011",
+                    "close": 599.39,
+                    "volume": 3390173,
+                    "open": 597.95,
+                    "high": 599.51,
+                    "low": 592.09,
+                    "symbol": "1. GOOG"
+                },
+                {
+                    "date": "10/31/2011",
+                    "close": 592.64,
+                    "volume": 2557538,
+                    "open": 595.09,
+                    "high": 599.69,
+                    "low": 591.67,
+                    "symbol": "1. GOOG"
+                },
+                {
+                    "date": "9/30/2011",
+                    "close": 515.04,
+                    "volume": 2723353,
+                    "open": 520.21,
+                    "high": 524,
+                    "low": 514.38,
+                    "symbol": "1. GOOG"
+                },
+                {
+                    "date": "8/31/2011",
+                    "close": 540.96,
+                    "volume": 2689989,
+                    "open": 544.74,
+                    "high": 546.3,
+                    "low": 536,
+                    "symbol": "1. GOOG"
+                },
+                {
+                    "date": "7/29/2011",
+                    "close": 603.69,
+                    "volume": 4133695,
+                    "open": 604.23,
+                    "high": 614.96,
+                    "low": 603.69,
+                    "symbol": "1. GOOG"
+                },
+                {
+                    "date": "6/30/2011",
+                    "close": 506.38,
+                    "volume": 2427330,
+                    "open": 501.99,
+                    "high": 506.67,
+                    "low": 501.5,
+                    "symbol": "1. GOOG"
+                },
+                {
+                    "date": "5/31/2011",
+                    "close": 529.02,
+                    "volume": 2685830,
+                    "open": 525,
+                    "high": 529.05,
+                    "low": 523.5,
+                    "symbol": "1. GOOG"
+                },
+                {
+                    "date": "4/29/2011",
+                    "close": 544.1,
+                    "volume": 3522997,
+                    "open": 540,
+                    "high": 544.1,
+                    "low": 538.51,
+                    "symbol": "1. GOOG"
+                },
+                {
+                    "date": "3/31/2011",
+                    "close": 586.76,
+                    "volume": 2028228,
+                    "open": 583,
+                    "high": 588.1612,
+                    "low": 581.74,
+                    "symbol": "1. GOOG"
+                },
+                {
+                    "date": "2/28/2011",
+                    "close": 613.4,
+                    "volume": 2281411,
+                    "open": 610,
+                    "high": 616.49,
+                    "low": 608.01,
+                    "symbol": "1. GOOG"
+                },
+                {
+                    "date": "1/31/2011",
+                    "close": 600.36,
+                    "volume": 2804332,
+                    "open": 603.6,
+                    "high": 604.47,
+                    "low": 595.55,
+                    "symbol": "1. GOOG"
+                }
+            ];*/
+
+            //--- Data Read part -----
+            // var file;
+            // var fileInput = document.getElementById('fileInput');
+            var username = document.getElementById('c_username').innerText;
+            //     var getFileBlob = function (url, cb) {
+            //         var xhr = new XMLHttpRequest();
+            //         xhr.open("GET", url);
+            //         xhr.responseType = "blob";
+            //         xhr.addEventListener('load', function() {
+            //                 cb(xhr.response);
+            //             });
+            //             xhr.send();
+            //     };
+
+            //     var blobToFile = function (blob, name) {
+            //             blob.lastModifiedDate = new Date();
+            //             blob.name = name;
+            //             return blob;
+            //     };
+
+            //     var getFileObject = function(filePathOrUrl, cb) {
+            //         getFileBlob(filePathOrUrl, function (blob) {
+            //             cb(blobToFile(blob, 'Dataset.csv'));
+            //         });
+            //     };
+                
+            //     var data=[],data1=[];
+            //     getFileObject('http://'+window.location.hostname+":"+window.location.port+'/assets/Dataset.csv', function (fileObject) {
+            //         var csvParser = new SimpleExcel.Parser.CSV();
+            //         csvParser.loadFile(fileObject, function () {
+            //             var tempdata =csvParser.getSheet();
+            //             var sum = 0;
+            //             for(i =0; i<tempdata.length; i++)
+            //             {  
+            //                 tempdata[i][0].value = parseInt(tempdata[i][0].value.trim().replace(/,/g, ''));
+            //                 data.push(tempdata[i][0]);
+            //                 sum = (sum+tempdata[i][0].value);
+            //             }
+            //             console.log(sum);
+            //             console.log("++++++++++++++++++++ANALSE++++++++++++++++++++");
+            //             console.log(data);
+            //         });
+            //         localStorage.clear();
+            //         var sample_url = "https://spreadsheets.google.com/pub?key=1bX69mewLL2wbP2668FGLJBZaXUtyIfHM2AZvnP3ALOM&hl=en&output=json";
+            //         var url_parameter = document.location.search.split(/\?url=/)[1]
+            //         var url = url_parameter || sample_url;
+            //         var googleSpreadsheet = new GoogleSpreadsheet();
+            //         googleSpreadsheet.url(url);
+            //         googleSpreadsheet.load(function(result) {
+                        
+            //             tempdata1 = result.data;//JSON.stringify(result).replace(/,/g,",\n");
+            //             console.log(result.data);
+            //             var index = 0;
+            //             var remain_position = 0;
+            //             for(i =0; i<tempdata1.rows.length; i++)
+            //             {
+            //                 console.log(tempdata1.rows[i][0]);
+            //                 var obj = {};
+            //                 obj['date'] = (1277942400000+60000*24*30*i);
+            //                 obj['value'] = parseInt(tempdata1.rows[i][2].substr(1).replace(/,/g, ''));
+
+            //                 value = parseInt(obj['value'])+ parseInt(remain_position);
+            //                 console.log(value);
+            //                 var count = 0;
+                            
+            //                 for(j=index; j< data.length; j++)
+            //                 {
+            //                     //console.log(value - parseInt(data[j].value) ); 
+            //                     if(value-data[j].value >0)
+            //                     {
+            //                         value = value-data[j].value;
+            //                         count++;
+            //                     }
+            //                     else
+            //                     {
+            //                         index = j;
+            //                         remain_position = value;
+            //                         obj['volume'] = count;
+            //                         break;
+            //                     }
+            //                 }
+            //                 data1.push(obj);
+            //             }
+                            
+            //                 console.log(data);
+            //                 console.log(data1);
+            //                 drawChart();
+                        
+            //         });
+            //     }); 
+                    //
+                    //-- Data Read part end --
+                /*************************Date Receive From API**************************************/
+                var data=[],data1=[];
+                $.ajax({url:"http://10.10.10.194:3000/api/v1/annotations", 
+                type: "GET",
+                success: function(result){
+                    var annot = result.annotations;
+                    unfulfilled_requests = annot;
+                    // var sum = 0;
+                    // for (i = 0; i < annot.length; i ++){
+                    //     data.push(annot[i]);
+                    //     sum = sum + annot[i].item_price;
+                    // }
+                    // console.log(sum);
+                    console.log(annot);
+                    drawChart();
+                    /*
+                    $.ajax({url:"http://localhost:3000/api/v1/order_books", 
+                    method:"GET",
+                    success: function(result){
+                        var index = 0;
+                        var remain_position = 0;
+                        var orders = result.order_books;
+                        for(i = 0; i < orders.length; i++){
+                            var obj = {};
+                            var temp_date = new Date(orders[i]["created_at"]);
+                            
+                            obj['date'] = temp_date.getTime();
+                            console.log("++++++++++++++DATE CONVERT+++++++++++++");
+                            obj['value'] = orders[i]["trade_principal"];
+
+                            value = obj['value']+ remain_position;
+                            console.log(value);
+                            var count = 0;
+
+                            for (j = index; j < data.length; j ++){
+                                if(value - data[j].item_price > 0)
+                                {
+                                    value = value-data[j].item_price;
+                                    count++;
+                                }
+                                else
+                                {
+                                    index = j;
+                                    remain_position = value;
+                                    obj['volume'] = count;
+                                    break;
+                                }
+                            }
+                            data1.push(obj);
+                        }
+                        drawChart();
+                    }})
+                    */
+                }});
+                /*************************Date Receive From API**************************************/
+                /*
+                function drawChart(){
+                    console.log(data1);
+                    // split the data set into ohlc and volume
+                    var ohlc = [],
+                        volume = [],
+                        dataLength = data1.length,
+                        // set the allowed units for data grouping
+                        groupingUnits = [[
+                                'week', // unit name
+                                [1]                             // allowed multiples
+                            ], [
+                                'month',
+                                [1, 2, 3, 4, 6]
+                            ]],
+                        i = 0;
+                    var pips = 0;
+                    var differentAmount;
+                    for (i; i < dataLength; i += 1) {
+                        if(i>0 && data[i-1].closeAmount != null && data[i].closeAmount > 0){
+                        differentAmount = data[i].closeAmount - data[i-1].closeAmount;
+                        }
+                        ohlc.push([
+                            data1[i].date, // the date
+                            data1[i].value, // open
+                            data1[i].value, // high
+                            data1[i].value, // low
+                            data1[i].value // close
+                        ]);
+
+                        volume.push([
+                            data1[i].date, // the date
+                            data1[i].volume // the volume
+                        ]);
+                    }
+                    console.log(ohlc);
+                    console.log(volume);
+                    // create the chart
+                    $('#chart').highcharts('StockChart', {
+                        colors: ['#FE0002', '#434348', '#90ed7d', '#f7a35c', '#8085e9',
+                            '#f15c80', '#e4d354', '#8085e8', '#8d4653', '#91e8e1'],
+                        rangeSelector: {
+                            allButtonsEnabled: true,
+                            buttons: [
+                                {
+                                    type: 'month',
+                                    count: 1,
+                                    text: '1m',
+                                    dataGrouping: {
+                                        forced: true,
+                                        units: [['day', [1]]]
+                                    }
+                                },
+                                {
+                                    type: 'month',
+                                    count: 2,
+                                    text: '2m',
+                                    dataGrouping: {
+                                        forced: true,
+                                        units: [['day', [1]]]
+                                    }
+                                },
+                                {
+                                    type: 'month',
+                                    count: 3,
+                                    text: '3m',
+                                    dataGrouping: {
+                                        forced: true,
+                                        units: [['day', [1]]]
+                                    }
+                                },
+                                {type: 'year',
+                                    count: 1,
+                                    text: 'Year',
+                                    dataGrouping: {
+                                        forced: true,
+                                        units: [['month', [1]]]
+                                    }
+                                },
+                                {
+                                    type: 'all',
+                                    text: 'All',
+                                    dataGrouping: {
+                                        forced: true,
+                                        units: [['month', [1]]]
+                                    }
+                                }],
+                            buttonTheme: {
+                                width: 60
+                            },
+                            selected: 0
+                        },                        
+                        tooltip: {
+                            useHTML: false,
+                            formatter: function() {
+                                console.log(this); 
+                                return `<div>Item: Item </div><br>` 
+                                        + `<div>ItemPrice: `+this.y+`</div><br>`
+                                        + `<div>Requestor: `+username+`</div><br>`
+                                        + `<div>Vendor:www.laboratory-equipment.com</div>`;
+                            } 
+                        }, 
+                        title: {
+                            text: 'BTC/USD Chart'
+                        },
+                        yAxis: [{
+                                labels: {
+                                    align: 'right',
+                                    x: -3
+                                },
+                                title: {
+                                    text: 'OHLC'
+                                },
+                                height: '60%',
+                                lineWidth: 2
+                            }, {
+                                labels: {
+                                    align: 'right',
+                                    x: -3
+                                },
+                                title: {
+                                    text: 'Volume'
+                                },
+                                top: '65%',
+                                height: '35%',
+                                offset: 0,
+                                lineWidth: 2
+                            }],
+                        series: [{
+                                type: 'candlestick',
+                                name: 'AAPL',
+                                data: ohlc,
+                                dataGrouping: {
+                                    units: groupingUnits
+                                }
+                            }, {
+                                type: 'column',
+                                name: 'Volume',
+                                data: volume,
+                                yAxis: 1,
+                                dataGrouping: {
+                                    units: groupingUnits
+                                }
+                            }]
+                    });
+                }*/
+                                
+
+                //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+                function drawChart(){
+                    Highcharts.setOptions({
+                        global: {
+                            useUTC: false
+                        }
+                    });
+            
+                    var chart;
+                    var index = 19;
+                    chart = new Highcharts.Chart({
+                        chart: {
+                            renderTo: 'chart',
+                            type: 'candlestick',
+                            marginRight: 10,
+                            events: {
+                                load: function() {
+            
+                                    // set up the updating of the chart each second
+                                    var series = this.series[0];
+                                    setInterval(function() {
+                                        
+                                        var x = (new Date()).getTime();
+                                        if(index > unfulfilled_requests.length){
+                                            index = 0;
+                                            return;
+                                        }
+                                        series.addPoint([
+                                        x,
+                                        unfulfilled_requests[index]["Open"]*1,
+                                        unfulfilled_requests[index]["high"]*1,
+                                        unfulfilled_requests[index]["low"]*1,
+                                        unfulfilled_requests[index]["Close"]*1,
+                                        ], true, true);
+                                        index ++;
+
+                                        //update index, default : $5631
+                                        temp = unfulfilled_requests[index]["Close"]*1;
+                                        elm_index = 5631 / temp;
+                                        $("#item_price").text(Math.round(elm_index * 100) / 100);
+                                    }, 10000);
+                                }
+                            }
+                        },
+                        title: {
+                            text: 'BTC/ELM'
+                        },
+                        xAxis: {
+                            type: 'datetime',
+                            tickPixelInterval: 150
+                        },
+                        yAxis: {
+                            title: {
+                                text: 'OLPC'
+                            },
+                            labels: {
+                                format: '{value:.2f}'
+                            },
+                            plotLines: [{
+                                value: 0,
+                                width: 1,
+                                color: '#808080'}]
+                        },
+                        tooltip: {
+                            formatter: function() {
+                                return '<b>' + this.series.name + '</b><br/>' + Highcharts.dateFormat('%Y-%m-%d %H:%M:%S', this.x) + '<br/>' + Highcharts.numberFormat(this.y, 2);
+                            }
+                        },
+                        legend: {
+                            enabled: false
+                        },
+                        exporting: {
+                            enabled: false
+                        },
+                        series: [{
+                            name: 'Random data',
+                            type: 'candlestick',
+                            data: (function() {
+                                // generate an array of random data
+                                var data = [],
+                                    time = (new Date()).getTime(),
+                                    i;
+                                    
+                                for (i = -19; i <= 0; i++) {
+                                    data.push([
+                                        time + i * 10000,
+                                        unfulfilled_requests[i+19]["Open"]*1,
+                                        unfulfilled_requests[i+19]["high"]*1,
+                                        unfulfilled_requests[i+19]["low"]*1,
+                                        unfulfilled_requests[i+19]["Close"]*1,
+                                        ]);
+                                }
+                                return data;
+                            })()}]
+                    });
+                }
+        });
+
+                                
+                        //});
+                                /*$('#buyContainer').highcharts('StockChart', {
+                                    colors: ['#FE0002', '#434348', '#90ed7d', '#f7a35c', '#8085e9',
+                                        '#f15c80', '#e4d354', '#8085e8', '#8d4653', '#91e8e1'],
+                                    rangeSelector: {
+                                        allButtonsEnabled: true,
+                                        buttons: [
+                                            {
+                                                type: 'month',
+                                                count: 1,
+                                                text: '1m',
+                                                dataGrouping: {
+                                                    forced: true,
+                                                    units: [['day', [1]]]
+                                                }
+                                            },
+                                            {
+                                                type: 'month',
+                                                count: 2,
+                                                text: '2m',
+                                                dataGrouping: {
+                                                    forced: true,
+                                                    units: [['day', [1]]]
+                                                }
+                                            },
+                                            {
+                                                type: 'month',
+                                                count: 3,
+                                                text: '3m',
+                                                dataGrouping: {
+                                                    forced: true,
+                                                    units: [['day', [1]]]
+                                                }
+                                            },
+                                            {type: 'year',
+                                                count: 1,
+                                                text: 'Year',
+                                                dataGrouping: {
+                                                    forced: true,
+                                                    units: [['month', [1]]]
+                                                }
+                                            },
+                                            {
+                                                type: 'all',
+                                                text: 'All',
+                                                dataGrouping: {
+                                                    forced: true,
+                                                    units: [['month', [1]]]
+                                                }
+                                            }],
+                                        buttonTheme: {
+                                            width: 60
+                                        },
+                                        selected: 0
+                                    },
+                                    title: {
+                                        text: 'Buy Chart'
+                                    },
+                                    yAxis: [{
+                                            labels: {
+                                                align: 'right',
+                                                x: -3
+                                            },
+                                            title: {
+                                                text: 'OHLC'
+                                            },
+                                            height: '60%',
+                                            lineWidth: 2
+                                        }, {
+                                            labels: {
+                                                align: 'right',
+                                                x: -3
+                                            },
+                                            title: {
+                                                text: 'Volume'
+                                            },
+                                            top: '65%',
+                                            height: '35%',
+                                            offset: 0,
+                                            lineWidth: 2
+                                        }],
+                                    series: [{
+                                            type: 'candlestick',
+                                            name: 'AAPL',
+                                            data: ohlc,
+                                            dataGrouping: {
+                                                units: groupingUnits
+                                            }
+                                        }, {
+                                            type: 'column',
+                                            name: 'Volume',
+                                            data: volume,
+                                            yAxis: 1,
+                                            dataGrouping: {
+                                                units: groupingUnits
+                                            }
+                                        }]
+                                });*/
+                    </script>
+                </section>
+            </div>
+        </div>
+    </section>
+</section>
+<script src="/assets/investor/mainInvestor.js"  type="text/javascript" />
+</script>

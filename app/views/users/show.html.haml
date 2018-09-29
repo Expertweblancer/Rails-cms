@@ -1,0 +1,25 @@
+%h1= "#{@user.first_name} #{@user.last_name}"
+
+- if @user == current_user
+  .form-group
+    = link_to 'Edit Profile', edit_user_registration_path, class: 'btn btn-default' 
+
+- if @user.researcher?
+
+  %h3= @user.university
+  .text-muted= @user.department
+  %p= @user.interests
+
+  %h3 Author of:
+  - @user.authored_projects.each do |project|
+    %h6= link_to project.title, project
+
+  %h3 Member of:
+  - @user.membered_projects.each do |project|
+    %h6= link_to project.title, project  
+
+- if @user.investor?
+
+  %h3 Investor of:
+  - @user.invested_projects.each do |project|
+    %h6= link_to project.title, project  

@@ -1,0 +1,46 @@
+<h3>Using SHA256 to Secure Passwords.</h3>
+<h5>This article was created by <a href="http://justcode.us" target="_blank">Benedict Lewis</a> for a blog post on using <a href="http://www.justcode.us/2013/05/using-sha256-digest-to-store-passwords/" target="_blank">SHA256 Client Side</a>. Please do not link directly to this resource, but rather link to <a href="http://www.justcode.us/2013/05/using-sha256-digest-to-store-passwords/" target="_blank">the origional post</a>. This article uses <code>sha256.js</code> which can be found <a href="http://www.bichlmeier.info/sha256.js" target="_blank">here</a>. The code contained here is licensed under the MIT license unless stated otherwise.</h5>
+<div class="input-prepend">
+    <span class="add-on">Password to be Hashed:</span>
+    <input class="span11" id="passwordInput" type="password" placeholder="Enter Password..."></input>
+</div>
+<p id="storedSHA"></p>
+<p>The above SHA256 is stored in a database, not your origional password. It is not possible to get the origional value from a SHA256 hash but as the SHA256 for a string is always the same. This means you can compare the SHA256 hash of what a person enters and the origional SHA256. If they are the same then they entered the correct password.</p>
+<div class="input-prepend">
+    <span class="add-on">Same/Another Password:</span>
+    <input class="span6" id="passwordTest" type="password" placeholder="Enter Password..."></input>
+</div>
+<p id="currentSHA"></p>
+<div class="alert alert-info">
+    <p id="status"></p>
+</div>
+<p>Because the origional password is never stored in plain text it is not possible for someone to get a users password, even if they crack the database password. <b>Don't believe me? Go look at the variables in the Javascript, you will see that the only stored values are the SHA256 hashs.</b>
+</p>
+
+<script type="text/javascript">
+
+var storedSHA;
+var userSHA;
+
+$("#passwordInput").keyup(function () {
+    var value = $(this).val();
+    $("#storedSHA").text("SHA256 Hash for Password: " + sha256_digest(value));
+    storedSHA = value;
+}).keyup();
+
+$("#passwordTest").keyup(function () {
+    var value = $(this).val();
+    $("#currentSHA").text("SHA256 Hash for Second Password: " + sha256_digest(value));
+    userSHA = value;
+}).keyup();
+
+$("#passwordInput, #passwordTest").keyup(function () {
+    if (userSHA == storedSHA) {
+        $("#status").html("<span class=\"label label-success\">Status:</span> The two passwords are the same. At this point you would be logged into whatever website you were logging into.");
+    } else {
+        $("#status").html("<span class=\"label label-important\">Status:</span> The two passwords are <b>not</b> the same. You would be told that your password or username was incorrect.");
+    }
+}).keyup();
+
+
+</script>

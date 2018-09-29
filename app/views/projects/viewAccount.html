@@ -1,0 +1,389 @@
+
+<section id="main-content">
+    <section class="wrapper">
+        <!-- <div class="row" id="investoresViewModel">
+            <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        Researcher Items
+                    </header>
+                    <div class="panel-body">
+                        <div class="adv-table">
+                            <table cellpadding="0" cellspacing="0" border="0" 
+                                   class="table table-striped table-condensed">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 30%">Item</th>
+                                        <th style="width: 30%">Project</th>
+                                        <th style="width: 20%">Amount($)</th>
+                                        <th style="width: 20%; text-align: center;">Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:{ data: items.pageItems , as: 'item' }">
+                                    <tr>
+                                        <td data-bind="text: item.Item_Name()"></td>
+                                        <td data-bind="text: item.Project_Name()"></td>
+
+                                        <td data-bind="text: item.Item_Price()"></td>
+                                        <td style="text-align: center;">
+                                            <a data-bind="click: $parent.openBuyModal" class='btn btn-shadow btn-primary'  href="#smart-modal-buy" data-toggle="modal"><i class='icon-chevron-sign-up'></i>  Buy </a> 
+                                            <a data-bind="click: $parent.openSellModal" class='btn btn-shadow btn-primary'  href="#smart-modal-sell" data-toggle="modal"><i class='icon-chevron-sign-down'></i>  Sell </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <ul class="pagination pagination-gap" style="display: inline-block; overflow: hidden; text-align: center; margin-bottom: 20px;">
+
+                                <li style="float: left;" data-bind="css: { disabled: items.isFirstPage() }" class="previous disabled">
+                                    <a href="#" aria-label="First" data-bind="click: items.toFirstPage">
+                                        First
+                                    </a>
+                                </li>
+                                <li style="float: left;" data-bind="css: { disabled: !items.hasPreviousPage() }" class="previous disabled">
+                                    <a href="#" aria-label="Previous" data-bind="click: items.toPreviousPage">
+                                        Previous
+                                    </a>
+                                </li>
+                          
+                                <li style="float: left;" data-bind="css: { active: $data == $parent.items.pageNumber() }">
+                                    <a href="#" data-bind="text: $data, click:  $parent.items.pageNumber.bind($data)"></a>
+                                </li>
+                               
+                                <li style="float: left;" data-bind="css: { disabled: !items.hasNextPage() }" class="next disabled">
+                                    <a href="#" aria-label="Next" data-bind="click: items.toNextPage">
+                                        Next
+                                    </a>
+                                </li>
+                                <li style="float: left;" data-bind="css: { disabled: items.isLastPage() }" class="next disabled">
+                                    <a href="#" aria-label="Last" data-bind="click: items.toLastPage">
+                                        Last
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div role="dialog" class="modal" id="smart-modal-buy" >
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                            <h4 class="modal-title">Buy Position Form</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id="buy" role="form">
+                                                <div class="row">
+                                                    <div class="col-sm-5">
+                                                        <div class="form-group">
+                                                            <img class="qrImage" alt=""/>
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <button class="btn btn-primary btn-shadow btn-block "><i class="icon-chevron-sign-up"></i>  Buy Item </button>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-7"> 
+                                                        <div class="form-group prepend-icon">
+                                                            <label for="Wallet_GUID">Wallet GUID</label>
+                                                            <input id="Your_Account" class="form-control" type="text" placeholder="Your Wallet GUID" name="Wallet_GUID">
+                                                            <span class="field-icon"><i class="icon-credit-card"></i></span> 
+                                                        </div>
+                                                        <div class="form-group prepend-icon">
+                                                            <label for="Wallet_Pass">Wallet Password</label>
+                                                            <input id="Wallet_Pass" class="form-control" type="text" placeholder="Your Wallet Password" name="Wallet_Pass">
+                                                            <span class="field-icon"><i class="icon-lock"></i></span> 
+                                                        </div>
+                                                        <div class="form-group prepend-icon">
+                                                            <label for="Amount_BTC">Amount in BTC</label>
+                                                            <input id="Amount_BTC" class="form-control" type="text" placeholder="Your Amount [BTC]" name="Amount_BTC">
+                                                            <span class="field-icon"><i class="icon-money"></i></span> 
+                                                        </div>
+                                                        <div class="alert alert-success" style="margin-top: 5px;">
+                                                            <p><strong>BlockChain Amount:</strong> <span class="number">50 BC</span></p>
+                                                        </div>      
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div role="dialog" class="modal" id="smart-modal-sell">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                            <h4 class="modal-title">Sell Position Form</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form id ="sell"role="form">
+                                                <div class="row">
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group prepend-icon">
+                                                            <label for="Sell_Amount">Sell Amount</label>
+                                                            <input type="text" class="form-control" id="Sell_Amount" placeholder="Sell Amount" name="Sell_Amount">
+                                                            <span class="field-icon"><i class="icon-money"></i></span>
+                                                        </div>
+
+                                                        <div class="form-group prepend-icon">
+                                                            <label for="Your_Account">Your Account</label>
+                                                            <input id="Your_Account" class="form-control" type="text" placeholder="Your Account" name="Your_Account">
+                                                            <span class="field-icon"><i class="icon-user"></i></span>                                                  
+                                                        </div>
+                                                        <div class="form-group prepend-icon">
+                                                            <button class="btn btn-primary btn-shadow btn-block"><i class="icon-chevron-sign-down"></i>  Sell Item </button>
+                                                        </div> 
+                                                    </div>
+                                                    <div class="col-sm-6"> 
+                                                        <div class="alert alert-success" style="margin-top: 20px;">
+                                                            <p><span>Our Wallet [BTC]</span></p>
+                                                            <br>
+                                                            <p><strong>BlockChain Amount:</strong> <span class="number">50 BC</span></p>
+                                                            <p><strong>Recevied Amount:</strong> <span class="number">15</span></p>
+                                                        </div>      
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div> -->
+        <!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="Mosaddek">
+        <meta name="keyword" content="FlatLab, Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+        
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 tooltipss and media queries -->
+        <!--[if lt IE 9]>
+          <script src="js/html5shiv.js"></script>
+          <script src="js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    All Requests
+                                </header>
+                                <div class="panel-body">
+                                    <div class="adv-table">
+                                        <table cellpadding="0" cellspacing="0" border="0" 
+                                               class="table table-striped table-condensed">
+                                            <thead>
+                                                <tr>
+                                                    <th style="width: 60%">Funding Source</th>
+                                                    <th style="width: 20%">Withdraw Source</th>
+                                                    <th style="width: 20%; text-align: center;">Orders</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-bind="foreach:{ data: items.pageItems , as: 'item' }">
+                                                <tr>
+                                                    <td data-bind="text: item.Item_Name()"></td>
+                                                    <td data-bind="text: item.Item_Price()"></td>
+                                                    <td style="text-align: center;">
+                                                        
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <ul class="pagination pagination-gap" style="display: inline-block; overflow: hidden; text-align: center; margin-bottom: 20px;">
+
+                                            <li style="float: left;" data-bind="css: { disabled: items.isFirstPage() }" class="previous disabled">
+                                                <a href="#" aria-label="First" data-bind="click: items.toFirstPage">
+                                                    First
+                                                </a>
+                                            </li>
+                                            <li style="float: left;" data-bind="css: { disabled: !items.hasPreviousPage() }" class="previous disabled">
+                                                <a href="#" aria-label="Previous" data-bind="click: items.toPreviousPage">
+                                                    Previous
+                                                </a>
+                                            </li>
+                                            <!-- ko foreach: items.pages -->
+                                            <li style="float: left;" data-bind="css: { active: $data == $parent.items.pageNumber() }">
+                                                <a href="#" data-bind="text: $data, click:  $parent.items.pageNumber.bind($data)"></a>
+                                            </li>
+                                            <!-- /ko -->
+                                            <li style="float: left;" data-bind="css: { disabled: !items.hasNextPage() }" class="next disabled">
+                                                <a href="#" aria-label="Next" data-bind="click: items.toNextPage">
+                                                    Next
+                                                </a>
+                                            </li>
+                                            <li style="float: left;" data-bind="css: { disabled: items.isLastPage() }" class="next disabled">
+                                                <a href="#" aria-label="Last" data-bind="click: items.toLastPage">
+                                                    Last
+                                                </a>
+                                            </li>
+                                        </ul>
+                                        <!-------------------------------------Modals Pop up-------------------------------------- -->
+                                        <!------------------------------------------Buy------------------------------------------- -->
+                                        <div role="dialog" class="modal" id="smart-modal-buy" >
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                                        <h4 class="modal-title">Buy Position Form</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form role="form">
+                                                            <div class="row">
+                                                                <div class="col-sm-5">
+                                                                    <div class="form-group">
+                                                                        <img class="qrImage" src="/assets/unnamed.png" alt=""/>
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <a class="btn btn-primary btn-shadow btn-block "><i class="icon-chevron-sign-up"></i>  Buy Item </a>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-7"> 
+                                                                    <div class="form-group prepend-icon">
+                                                                        <label for="Wallet_GUID">Wallet GUID</label>
+                                                                        <input id="Your_Account" class="form-control" type="text" placeholder="Your Wallet GUID" name="Wallet_GUID">
+                                                                        <span class="field-icon"><i class="icon-credit-card"></i></span> 
+                                                                    </div>
+                                                                    <div class="form-group prepend-icon">
+                                                                        <label for="Wallet_Pass">Wallet Password</label>
+                                                                        <input id="Wallet_Pass" class="form-control" type="text" placeholder="Your Wallet Password" name="Wallet_Pass">
+                                                                        <span class="field-icon"><i class="icon-lock"></i></span> 
+                                                                    </div>
+                                                                    <div class="form-group prepend-icon">
+                                                                        <label for="Amount_BTC">Amount in BTC</label>
+                                                                        <input id="Amount_BTC" class="form-control" type="text" placeholder="Your Amount [BTC]" name="Amount_BTC">
+                                                                        <span class="field-icon"><i class="icon-money"></i></span> 
+                                                                    </div>
+                                                                    <div class="alert alert-success" style="margin-top: 5px;">
+                                                                        <p><strong>BlockChain Amount:</strong> <span class="number">50 BC</span></p>
+                                                                    </div>		
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!------------------------------------------Sell------------------------------------------- -->
+                                        <div role="dialog" class="modal" id="smart-modal-sell">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                                        <h4 class="modal-title">Sell Position Form</h4>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form role="form">
+                                                            <div class="row">
+                                                                <div class="col-sm-6">
+                                                                    <div class="form-group prepend-icon">
+                                                                        <label for="Sell_Amount">Sell Amount</label>
+                                                                        <input type="text" class="form-control" id="Sell_Amount" placeholder="Sell Amount" name="Sell_Amount">
+                                                                        <span class="field-icon"><i class="icon-money"></i></span>
+                                                                    </div>
+
+                                                                    <div class="form-group prepend-icon">
+                                                                        <label for="Your_Account">Your Account</label>
+                                                                        <input id="Your_Account" class="form-control" type="text" placeholder="Your Account" name="Your_Account">
+                                                                        <span class="field-icon"><i class="icon-user"></i></span>                                                  
+                                                                    </div>
+                                                                    <div class="form-group prepend-icon">
+                                                                        <a class="btn btn-primary btn-shadow btn-block"><i class="icon-chevron-sign-down"></i>  Sell Item </a>
+                                                                    </div> 
+                                                                </div>
+                                                                <div class="col-sm-6"> 
+                                                                    <div class="alert alert-success" style="margin-top: 20px;">
+                                                                        <p><span>Our Wallet [BTC]</span></p>
+                                                                        <br>
+                                                                        <p><strong>BlockChain Amount:</strong> <span class="number">50 BC</span></p>
+                                                                        <p><strong>Recevied Amount:</strong> <span class="number">15</span></p>
+                                                                    </div>		
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </section>
+      
+            <!--main content end-->
+
+
+        <!-- js placed at the end of the document so the pages load faster -->
+
+
+
+
+    </body>
+</html>
+
+        <!------------------------------------------Sell--------------------------------------------->
+        <div role="alert" class="smartforms-modal" id="smart-modal-sell">
+            <div class="smartforms-modal-container">
+                <div class="smartforms-modal-header">
+                    <h3>Sell Position Form</h3>
+                    <a class="smartforms-modal-close" href="#">&times;</a>            
+                </div>
+                <div class="smartforms-modal-body">
+                    <div class="smart-wrap">
+                        <div class="smart-forms smart-container wrap-full">
+                            <div class="form-body">
+                                <form id="smart-form" action="" method="post">
+                                    <div class="frm-row">
+                                        <div class="spacer-b30 spacer-t30">
+                                            <div class="tagline">
+                                                <span>Please enter the following</span>
+                                            </div>
+                                        </div>                                   
+                                        <div class="section colm colm6 ">		
+                                            <div class="section">
+                                                <label class="field prepend-icon">
+                                                    <input id="Sell_Amount" class="gui-input" type="text" placeholder="Sell Amount" name="">
+                                                    <span class="field-icon"><i class="fa fa-money"></i></span>
+                                                </label>
+                                            </div>
+                                            <div class="section">
+                                                <label class="field prepend-icon">
+                                                    <input id="Your_Account" class="gui-input" type="text" placeholder="Your Account" name="">
+                                                    <span class="field-icon"><i class="fa fa-user"></i></span>
+                                                </label>
+                                            </div>
+                                            <div class="section">
+                                                <a class="button  pushed btn-primary block expand"><i class="fa fa-chevron-circle-down"></i>  Sell Item </a>
+                                            </div>
+                                        </div> 
+                                        <div class="section colm colm6 "> 
+                                            <div class="notification alert-success" style="margin-top: 0;">
+                                                <p><span>Our Wallet [BTC]</span></p>
+                                                <br>
+                                                <p><strong>BlockChain Amount:</strong> <span class="number">50 BC</span></p>
+                                                <p><strong>Recevied Amount:</strong> <span class="number">15</span></p>
+                                            </div>		
+                                        </div>
+                                    </div>                                         
+                                </form>                                                                                   
+                            </div>
+                        </div>
+                    </div>         
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
+    </section>
+</section>
+<script src="/assets/investor/viewRequests.js"  type="text/javascript" />         
+
+</script>

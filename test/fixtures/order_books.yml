@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  trade_principal: 1
+  security: MyString
+  security_price: 1
+  shares: 
+  shares: 
+  security_principal: 1
+  elmhurst_principal: 1
+  profit_loss: 1
+  receipient: MyString
+
+two:
+  name: MyString
+  trade_principal: 1
+  security: MyString
+  security_price: 1
+  shares: 
+  shares: 
+  security_principal: 1
+  elmhurst_principal: 1
+  profit_loss: 1
+  receipient: MyString

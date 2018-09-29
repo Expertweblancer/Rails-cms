@@ -1,0 +1,80 @@
+%section#main-content
+  .section.wrapper
+    .row
+      #userInfoViewModel.col-md-12
+        %section.panel
+          %header.panel-heading
+            User Information
+          .panel-body
+            = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f|
+              .row
+                .col-lg-5
+                  .form-group.prepend-icon
+                    = f.label :email
+                    = f.email_field :email, autofocus: true, class: "form-control" , :placeholder => "User Email"
+                    %span.field-icon
+                      %i.icon-envelope
+      
+                  .form-group.prepend-icon
+                    = f.label :password
+                    
+                    = f.password_field :password, :autocomplete => "off", class: "form-control" , :placeholder => "User Password"
+                    %span.field-icon
+                      %i.icon-lock
+                    %p.help-block
+                      #{t('.leave_blank_if_you_don_t_want_to_change_it', :default => "leave blank if you don't want to change it")}
+                    %br/
+                  .form-group.prepend-icon
+                    = f.label :password_confirmation
+                    %br/
+                    = f.password_field :password_confirmation, class: "form-control" , :placeholder => "User Password Confirmation"
+                    %span.field-icon
+                      %i.icon-lock
+                  .form-group.prepend-icon
+                    = f.label :current_password
+                    
+                    = f.password_field :current_password, class: "form-control" , :placeholder => "User Current Password"
+                    %span.field-icon
+                      %i.icon-lock
+
+                    %p.help-block
+                      #{t('.we_need_your_current_password_to_confirm_your_changes', :default => 'we need your current password to confirm your changes')}
+                    = bootstrap_devise_error_messages!
+  
+
+                .col-lg-6.col-lg-offset-1
+                  .row
+                    .col-lg-6
+                      .form-group.prepend-icon
+                        = f.label :first_name
+                        = f.text_field :first_name, autofocus: true, class: "form-control" , :placeholder => "User First Name"
+                        %span.field-icon
+                          %i.icon-user
+                      .form-group.prepend-icon
+                        = f.label :last_name
+                        = f.text_field :last_name, autofocus: true, class: "form-control", :placeholder => "User Last Name"
+                        %span.field-icon
+                          %i.icon-user
+                    .col-lg-6 
+                      .form-group.prepend-icon     
+                        = f.label :university
+                        = f.text_field :university, autofocus: true, class: "form-control", :placeholder => "User University"
+                        %span.field-icon
+                          %i.icon-book
+                      .form-group.prepend-icon   
+                        = f.label :department
+                        = f.text_field :department, autofocus: true, class: "form-control", :placeholder => "User Department"
+                        %span.field-icon
+                          %i.icon-sitemap
+               
+                  .col-lg-13      
+                    .form-group.prepend-icon 
+                      = f.label :interests
+                      = f.text_area :interests, autofocus: true, rows: '5', class: "form-control" , :placeholder => "User Interests"
+                      %span.field-icon
+                        %i.icon-star
+                                 
+
+              
+              = f.submit t('.update', :default => "Update"), class: "btn btn-shadow btn-primary"
+              

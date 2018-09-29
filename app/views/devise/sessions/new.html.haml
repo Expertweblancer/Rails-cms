@@ -1,0 +1,26 @@
+%body.login-body
+  .container
+    %div.form-signin.cmxform.tasi-form#form-signin
+      %h2.form-signin-heading sign in now
+      .login-wrap
+        .div
+        = form_for(resource, as: resource_name, url: session_path(resource_name), html: { role: "form" }) do |f|
+          .form-group
+            = f.label :email
+            = f.email_field :email, autofocus: true, class: "form-control"
+          .form-group
+            = f.label :password
+            = f.password_field :password, autocomplete: "off", class: "form-control"
+          - if devise_mapping.rememberable?
+          %label.checkbox
+            = f.check_box :remember_me
+              = f.label :remember_me
+              %span.pull-right
+                = render "devise/shared/links"
+      
+          = f.submit  t('.sign_in', :default => "Sign in"), class: "btn btn-lg btn-login btn-block"
+          %div
+            Don't have an account yet?
+            %a= link_to "create an account", new_user_registration_path      
+%script{:src => "/assets/public/login.js"}
+                  

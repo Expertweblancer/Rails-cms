@@ -1,0 +1,2 @@
+class AuthorshipsController < ApplicationController
+end

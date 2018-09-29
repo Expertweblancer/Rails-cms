@@ -1,0 +1,110 @@
+<!--main content start-->
+            <section id="main-content">
+                <section class="wrapper">
+                    <div class="row" >
+                        <div class="col-md-12" id="userInfoViewModel">
+                            <section class="panel">
+                                <header class="panel-heading">
+                                    User Information
+                                </header>
+                                <div class="panel-body">
+                                    <form role="form" class="cmxform tasi-form" >
+                                        <div class="row">
+                                            <div class="col-lg-5">
+                                                <div class="form-group prepend-icon">
+                                                    <label for="email">Email</label>
+                                                    <input type="text" class="form-control" id="email" placeholder="User Email" name="email" data-bind="value: email">
+                                                    <span class="field-icon"><i class="icon-envelope"></i></span>
+                                                </div>
+                                                <div class="form-group prepend-icon">
+                                                    <label for="encrypted_password">Password</label>
+                                                    <input type="text" class="form-control" id="encrypted_password" placeholder="User Password" name="encrypted_password" data-bind="value: encrypted_password">
+                                                    <span class="field-icon"><i class="icon-lock"></i></span>
+                                                    <p class="help-block">Leave blank if you don't want to change it.</p>
+                                                </div>
+
+                                                <div class="form-group prepend-icon">
+                                                    <label for="reset_password_token">Password Confirmation</label>
+                                                    <input type="text" class="form-control" id="reset_password_token" placeholder="User Password Confirmation" name="reset_password_token" data-bind="value: reset_password_token">
+                                                    <span class="field-icon"><i class="icon-lock"></i></span>
+                                                </div>
+                                                <div class="form-group prepend-icon">
+                                                    <label for="encrypted_password">Current Password</label>
+                                                    <input type="password" class="form-control" id="encrypted_password" placeholder="User Current Password" name="encrypted_password" data-bind="value: encrypted_password">
+                                                    <span class="field-icon"><i class="icon-lock"></i></span>
+                                                    <p class="help-block">We need your current password to confirm your change.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-lg-offset-1">
+                                                <div class="row">
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group prepend-icon">
+                                                            <label for="first_name">First Name</label>
+                                                            <input type="text" class="form-control" id="first_name" placeholder="User First Name" name="first_name" data-bind="value: first_name">
+                                                            <span class="field-icon"><i class="icon-user"></i></span>
+                                                        </div>
+                                                        <div class="form-group prepend-icon">
+                                                            <label for="last_name">last Name</label>
+                                                            <input type="text" class="form-control" id="last_name" placeholder="User Last Name" name="last_name" data-bind="value: last_name">
+                                                            <span class="field-icon"><i class="icon-user"></i></span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-6">
+                                                        <div class="form-group prepend-icon">
+                                                            <label for="university">University</label>
+                                                            <input type="text" class="form-control" id="university" placeholder="User University" name="university" data-bind="value: university">
+                                                            <span class="field-icon"><i class="icon-book"></i></span>
+                                                        </div>
+                                                        <div class="form-group prepend-icon">
+                                                            <label for="department">Department</label>
+                                                            <input type="text" class="form-control" id="department" placeholder="User Department" name="department" data-bind="value: department">
+                                                            <span class="field-icon"><i class="icon-sitemap"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group prepend-icon">
+                                                            <label for="interests">Interests</label>
+                                                            <textarea rows="6" style="resize: none" type="text" class="form-control" id="interests" placeholder="User Interests" name="interests" data-bind="value: interests"></textarea>
+                                                            <span class="field-icon"><i class="icon-star"></i></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="form-group">
+                                                    <button id="save" class="btn btn-shadow btn-primary" type="submit" data-bind="click: updateUserProfile"> update  </button>
+                                                    <a id="cancel" class="btn btn-shadow btn-default" href="#cancelConfirm" data-toggle="modal"> Cancel </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <div role="dialog" tabindex="-1" id="cancelConfirm" class="modal">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <p> Are you sure cancel your updates on user info? </p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button class="btn btn-danger btn-shadow" type="submit" data-bind="click: updateUserProfile">  Ok </button>
+                                                    <a class="btn btn-default btn-shadow" data-dismiss="modal" > Cancel </a>
+                                                </div>
+                                            </div>
+                                        </div>++
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                        
+  <script src="/assets/public/editProfile.js"  type="text/javascript" />
+
+                        <script type="text/javascript">
+
+
+                        </script>             
+                    </div>
+                </section>
+            </section>
