@@ -46,7 +46,7 @@ group :development do
   gem 'spring'
 end
 
-gem 'devise', '3.5.2'
+gem 'devise', '4.7.1'
 gem 'bootstrap-sass'
 gem 'devise-bootstrap-views', '0.0.6'
 gem 'haml-rails'
